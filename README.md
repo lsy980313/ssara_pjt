@@ -29,20 +29,20 @@
 
 ```
 ┌─────────────────────────────────────────────────┐
-│           User (Web Browser / PWA)               │
+│           User (Web Browser / PWA)              │
 └────────────┬────────────────────────────────────┘
              │ HTTPS / WebSocket
              ▼
 ┌─────────────────────────────────────────────────┐
-│        Nginx (Reverse Proxy + SSL)               │
+│        Nginx (Reverse Proxy + SSL)              │
 │  / → Vue SPA    /api/ → Spring Boot   /ws/ → WS │
 └────────────┬──────────────┬─────────────────────┘
              │              │ MQTT.js (9001)
              ▼              ▼
 ┌─────────────────────────────────────────────────┐
-│           Backend (Spring Boot 4.0)              │
-│  REST API / MQTT↔WebSocket / Firebase FCM        │
-│  PostgreSQL 15 / Kakao Maps Proxy                │
+│           Backend (Spring Boot 4.0)             │
+│  REST API / MQTT↔WebSocket / Firebase FCM       │
+│  PostgreSQL 15 / Kakao Maps Proxy               │
 └────────────┬────────────────────────────────────┘
              │ MQTT (1883)
              ▼
@@ -52,12 +52,12 @@
 └───────┬──────────────────┬──────────────────────┘
         ▼                  ▼
 ┌─────────────────────────────────────────────────┐
-│     Jetson Orin Nano (Docker + ROS2 Humble)      │
-│                                                   │
-│  [gae_control]    RL 보행 제어 (50Hz)             │
-│  [gae_hardware]   서보 12축 / IMU / 초음파         │
-│  [gae_perception] YOLOv8 + RTAB-Map SLAM          │
-│  [gae_interface]  AI 음성 비서 + MQTT 브릿지       │
+│     Jetson Orin Nano (Docker + ROS2 Humble)     │
+│                                                 │
+│  [gae_control]    RL 보행 제어 (50Hz)            │
+│  [gae_hardware]   서보 12축 / IMU / 초음파        │
+│  [gae_perception] YOLOv8 + RTAB-Map SLAM        │
+│  [gae_interface]  AI 음성 비서 + MQTT 브릿지      │
 └─────────────────────────────────────────────────┘
 ```
 
