@@ -1,0 +1,35 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  # 1. 운영용 DB (환경변수)
+  datasource:
+    url: ${DB_URL}           # 예: jdbc:postgresql://1.23.45.67:5432/real_db
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD} # 절대 코드에 적지 않음
+    driver-class-name: org.postgresql.Driver
+
+  # 2. JPA (운영 사고 방지)
+  jpa:
+    hibernate:
+      ddl-auto: validate     # 테이블 구조 변경 금지 (update 쓰면 데이터 날아갈 수 있음)
+    show-sql: false          # 로그에 SQL 찍히면 개인정보 유출 위험 + 용량 폭발
+
+  # 3. 메일
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# 4. JWT (운영 서버 전용 비밀키)
+jwt:
+  secret: ${JWT_SECRET}      # 해킹 방지를 위해 운영용 키는 따로 관리
+  expiration: 86400000

@@ -1,0 +1,9 @@
+/**:
+  ros__parameters:
+    imu_sensor_bias:
+      accel_bias_x: 0.15697583184814498
+      accel_bias_y: -0.035345599108886495
+      accel_bias_z: 0.0
+      gyro_bias_x: -0.03887845257975271
+      gyro_bias_y: -0.08794512033417806
+      gyro_bias_z: 0.020577720548700842

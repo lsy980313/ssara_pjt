@@ -1,0 +1,7 @@
+[2026-02-04 08:48:54] === 음성 인터페이스 시작 ===
+[2026-02-04 08:49:16] [사용자] 오, 네네?
+[2026-02-04 08:49:16] [GPT 분석] action=unknown, reason=GPT 오류: Completions.create() got an unexpected keyword argument 'reasoning'
+[2026-02-04 08:49:16] [로봇] 다시 말씀해주세요
+[2026-02-04 08:49:22] [사용자] 앞으로 가
+[2026-02-04 08:49:22] [GPT 분석] action=unknown, reason=GPT 오류: Completions.create() got an unexpected keyword argument 'reasoning'
+[2026-02-04 08:49:22] [로봇] 다시 말씀해주세요

@@ -1,0 +1,7 @@
+[2026-02-04 08:33:23] === 음성 인터페이스 시작 ===
+[2026-02-04 08:33:43] [사용자] 이 영상은 1,2,3,2,3,2,3,2,3,2,3,2,3
+[2026-02-04 08:33:44] [GPT 분석] action=unknown, reason=GPT 오류: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-.... You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'code': 'invalid_api_key', 'param': None}, 'status': 401}
+[2026-02-04 08:33:44] [로봇] 다시 말씀해주세요
+[2026-02-04 08:33:51] [사용자] 앞으로 가, 멈춰
+[2026-02-04 08:33:51] [GPT 분석] action=unknown, reason=GPT 오류: Error code: 401 - {'error': {'message': 'Incorrect API key provided: sk-.... You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'code': 'invalid_api_key', 'param': None}, 'status': 401}
+[2026-02-04 08:33:51] [로봇] 다시 말씀해주세요

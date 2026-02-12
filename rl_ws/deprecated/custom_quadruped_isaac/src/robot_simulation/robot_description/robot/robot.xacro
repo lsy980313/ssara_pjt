@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<robot name="quadruped_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- xacro:include filename="$(find robot_description)/robot/parts/base/base.xacro"/ -->
+  <xacro:include filename="$(find robot_description)/robot/parts/base/base.xacro"/>
+  <xacro:include filename="$(find robot_description)/robot/parts/leg_joint/leg_joint.xacro"/>
+  <xacro:include filename="$(find robot_description)/robot/parts/left_thigh/left_thigh.xacro"/>
+  <xacro:include filename="$(find robot_description)/robot/parts/right_thigh/right_thigh.xacro"/>
+  <xacro:include filename="$(find robot_description)/robot/parts/shin/shin.xacro"/>
+  <xacro:include filename="$(find robot_description)/robot/parts/foot/foot.xacro"/>
+
+  <xacro:property name="PI" value="3.14159274"/>
+
+  <!-- =============== Link & Joint =============== -->
+  <!-- Base -->
+	<link name="trunk">
+	  <visual>
+		  <geometry>
+		    <mesh filename="package://robot_description/meshes/DAE/base/base_link.dae"/>
+		  </geometry>
+	  </visual>
+	  <collision>
+		  <geometry>
+		    <mesh filename="package://robot_description/meshes/STL/base/base_link.stl"/>
+		  </geometry>
+	  </collision>
+	  <inertial>
+		  <origin xyz="-0.1 0 0.09"/>
+		  <mass value="9.7"/> 
+		  <inertia ixx="0.075" ixy="-0.0017" ixz="-0.0017" iyy="0.4" iyz="-0.0008" izz="0.43" />
+	  </inertial>
+	</link>
+
+  <xacro:leg_joint_v0 prefix="RL" parent="trunk">
+    <origin xyz="-0.277 0.06 0.089405" rpy="0 ${PI/2} ${-PI/2}"/>  
+    <axis xyz="0 -1 0"/> <!-- 0 -1 0 -->
+  </xacro:leg_joint_v0>
+
+  <xacro:leg_joint_v0 prefix="RR" parent="trunk">
+    <origin xyz="-0.277 -0.06 0.089405" rpy="0 ${-PI/2} ${-PI/2}"/> 
+    <axis xyz="0 1 0"/>
+  </xacro:leg_joint_v0>
+
+  <xacro:leg_joint_v0 prefix="FL" parent="trunk">
+    <origin xyz="0.282 0.06 0.090255" rpy="0 ${PI/2} ${-PI/2}"/> 
+    <axis xyz="0 -1 0"/> <!-- 0 -1 0 -->
+  </xacro:leg_joint_v0>
+
+  <xacro:leg_joint_v0 prefix="FR" parent="trunk">
+    <origin xyz="0.282 -0.06 0.090255" rpy="0 ${-PI/2} ${-PI/2}"/> 
+    <axis xyz="0 1 0"/>
+  </xacro:leg_joint_v0>
+
+  <xacro:left_thigh_v0 prefix="F" parent="FL_hip">
+    <origin xyz="0 0 -0.114" rpy="${PI/2} 0 0"/>
+    <axis xyz="0 1 0"/>
+  </xacro:left_thigh_v0>
+
+  <xacro:left_thigh_v0 prefix="R" parent="RL_hip">
+    <origin xyz="0 0 -0.114" rpy="${PI/2} 0 0"/>
+    <axis xyz="0 1 0"/>
+  </xacro:left_thigh_v0>
+  
+  <xacro:right_thigh_v0 prefix="F" parent="FR_hip">
+    <origin xyz="0 0 -0.114" rpy="${PI/2} 0 ${PI}"/>
+    <axis xyz="0 -1 0"/> <!-- 0 -1 0 -->
+  </xacro:right_thigh_v0>
+
+  <xacro:right_thigh_v0 prefix="R" parent="RR_hip">
+    <origin xyz="0 0 -0.114" rpy="${PI/2} 0 ${PI}"/>
+    <axis xyz="0 -1 0"/> <!-- 0 -1 0 -->
+  </xacro:right_thigh_v0>
+
+  <xacro:calf prefix="FL" parent="FL_thigh">
+    <origin xyz="0.426 -0.0285 0" rpy="0 ${PI} 0"/>
+    <axis xyz="0 1 0"/>
+  </xacro:calf>
+
+  <xacro:calf prefix="RL" parent="RL_thigh">
+    <origin xyz="0.426 -0.0285 0" rpy="0 ${PI} 0"/>
+    <axis xyz="0 1 0"/>
+  </xacro:calf>
+
+  <xacro:calf prefix="FR" parent="FR_thigh">
+    <origin xyz="0.426 -0.0285 0" rpy="${PI} ${PI} 0"/>
+    <axis xyz="0 1 0"/>
+  </xacro:calf>
+
+  <xacro:calf prefix="RR" parent="RR_thigh">
+    <origin xyz="0.426 -0.0285 0" rpy="${PI} ${PI} 0"/>
+    <axis xyz="0 1 0"/>
+  </xacro:calf>
+
+  <xacro:foot prefix="FL" parent="FL_calf">
+    <origin xyz="-0.345 0 0" rpy="0 0 0" />
+  </xacro:foot>
+
+  <xacro:foot prefix="RL" parent="RL_calf">
+    <origin xyz="-0.345 0 0" rpy="0 0 0" />
+  </xacro:foot>
+
+  <xacro:foot prefix="FR" parent="FR_calf">
+    <origin xyz="-0.345 0 0" rpy="0 0 0" />
+  </xacro:foot>
+
+  <xacro:foot prefix="RR" parent="RR_calf">
+    <origin xyz="-0.345 0 0" rpy="0 0 0" />
+  </xacro:foot>
+
+</robot>

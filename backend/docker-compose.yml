@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: gae_postgres
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME:-dog_gaje_db}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD 환경변수를 설정하세요}
+    volumes:
+      - ./db_data:/var/lib/postgresql/data # 데이터 저장소 (껐다 켜도 데이터 유지됨)
+    restart: always

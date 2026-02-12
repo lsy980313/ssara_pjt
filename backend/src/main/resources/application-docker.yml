@@ -1,0 +1,30 @@
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 3600000
+
+external:
+  gms:
+    api-key: ${GMS_API_KEY:}
+    base-url: ${GMS_BASE_URL:https://gms.ssafy.io/gmsapi/api.openai.com/v1}
+  kakao:
+    rest-api-key: ${KAKAO_REST_API_KEY:}
+    base-url: ${KAKAO_BASE_URL:https://dapi.kakao.com/v2/local}

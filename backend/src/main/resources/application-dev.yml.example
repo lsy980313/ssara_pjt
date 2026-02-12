@@ -1,0 +1,39 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  # 1. 개발용 DB
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dog_gaje_db
+    username: postgres
+    password: your_password  # 본인 DB 비밀번호 입력
+    driver-class-name: org.postgresql.Driver
+
+  # 2. JPA
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+
+  # 3. 메일 (Gmail SMTP)
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: saffytaek1@gmail.com    # 본인 Gmail 입력
+    password: zxco bikj xdjw bzkz # Gmail 앱 비밀번호 (16자리)
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# 4. JWT
+jwt:
+  secret: c2lsdmVyLWxpbmUtcHJvamVjdC1zZWNyZXQta2V5LWZvci1qd3Qtc2lnbmF0dXJlLWV4YW1wbGU=
+  expiration: 86400000

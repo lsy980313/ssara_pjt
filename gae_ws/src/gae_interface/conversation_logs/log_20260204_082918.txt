@@ -1,0 +1,25 @@
+[2026-02-04 08:29:18] === 음성 인터페이스 시작 ===
+[2026-02-04 08:29:28] [사용자] 으로 가
+[2026-02-04 08:29:28] [GPT 분석] action=unknown, reason=GPT 오류: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+[2026-02-04 08:29:28] [로봇] 다시 말씀해주세요
+[2026-02-04 08:29:34] [사용자] 앞뒤로 가
+[2026-02-04 08:29:34] [GPT 분석] action=unknown, reason=GPT 오류: 
+
+You tried to access openai.ChatCompletion, but this is no longer supported in openai>=1.0.0 - see the README at https://github.com/openai/openai-python for the API.
+
+You can run `openai migrate` to automatically upgrade your codebase to use the 1.0.0 interface. 
+
+Alternatively, you can pin your installation to the old version, e.g. `pip install openai==0.28`
+
+A detailed migration guide is available here: https://github.com/openai/openai-python/discussions/742
+
+[2026-02-04 08:29:34] [로봇] 다시 말씀해주세요

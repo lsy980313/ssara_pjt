@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: gae-server
+  profiles:
+    active: dev  # 여기서 'dev'를 선택했기 때문에 자동으로 application-dev.yml을 읽습니다.
+
+# CORS Configuration
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:8080}
+
+# MQTT Configuration
+mqtt:
+  broker:
+    url: ${MQTT_BROKER_URL:tcp://192.168.100.246:1883}
+  client:
+    id: spring-server
+  default-topic: gae/robot
+  qos: 1
+  username: ${MQTT_USERNAME:}
+  password: ${MQTT_PASSWORD:}
+
+# External API Keys (for proxy)
+external:
+  gms:
+    api-key: ${GMS_API_KEY:}
+    base-url: ${GMS_BASE_URL:https://gms.ssafy.io/gmsapi/api.openai.com/v1}
+  kakao:
+    rest-api-key: ${KAKAO_REST_API_KEY:}
+    base-url: ${KAKAO_BASE_URL:https://dapi.kakao.com/v2/local}

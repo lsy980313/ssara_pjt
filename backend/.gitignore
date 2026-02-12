@@ -1,0 +1,87 @@
+# ==================== Build ====================
+HELP.md
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ==================== IDE ====================
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### STS / Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### VS Code ###
+.vscode/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# ==================== Gradle ====================
+.gradle
+**/build/
+!src/**/build/
+
+# ==================== 환경 설정 (중요!) ====================
+### Environment Variables ###
+.env
+.env.local
+.env.*.local
+*.env
+
+### Application Properties (민감 정보 포함 시) ###
+application-local.yml
+application-local.properties
+application-secret.yml
+application-secret.properties
+
+# ==================== Firebase (중요!) ====================
+firebase-service-account.json
+*-firebase-adminsdk-*.json
+google-services.json
+
+# ==================== 로그 ====================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==================== OS ====================
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# ==================== 기타 ====================
+# H2 Database
+*.db
+*.mv.db
+*.trace.db
+
+# Local configuration file
+local.properties
+
+# Test outputs
+test-output/
+target/

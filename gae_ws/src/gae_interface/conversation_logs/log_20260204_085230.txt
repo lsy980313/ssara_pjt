@@ -1,0 +1,10 @@
+[2026-02-04 08:52:30] === 음성 인터페이스 시작 ===
+[2026-02-04 08:52:37] [사용자] 앞으로 가, 앞으로 가
+[2026-02-04 08:52:38] [GPT 분석] action=unknown, reason=GPT 오류: Error code: 401 - {'error': {'message': 'Incorrect API key provided: S14P12C1***********************************3146. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+[2026-02-04 08:52:38] [로봇] 다시 말씀해주세요
+[2026-02-04 08:52:47] [사용자] 앞에 더 많이 쳤어
+[2026-02-04 08:52:47] [GPT 분석] action=unknown, reason=GPT 오류: Error code: 401 - {'error': {'message': 'Incorrect API key provided: S14P12C1***********************************3146. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+[2026-02-04 08:52:47] [로봇] 다시 말씀해주세요
+[2026-02-04 08:52:55] [사용자] 앞에 뭐가 있어?
+[2026-02-04 08:52:55] [GPT 분석] action=unknown, reason=GPT 오류: Error code: 401 - {'error': {'message': 'Incorrect API key provided: S14P12C1***********************************3146. You can find your API key at https://platform.openai.com/account/api-keys.', 'type': 'invalid_request_error', 'param': None, 'code': 'invalid_api_key'}}
+[2026-02-04 08:52:55] [로봇] 다시 말씀해주세요

@@ -1,0 +1,17 @@
+# ⚠️ [경고] 로봇팀 필독 ⚠️
+# 아래 패키지들은 Docker 이미지(gae-system:v1.6)에 최적화 버전이 내장되어 있습니다.
+# 절대 여기에 적지 마세요! (적으면 GPU 가속 풀림)
+# - torch, torchvision, torch2trt
+# - opencv-python, opencv-contrib-python
+# - Jetson.GPIO
+# -----------------------------------------------------------
+# ⚠️ [시스템 보호 - 절대 수정 금지]
+# Jetson PyTorch 호환성을 위해 NumPy 버전을 2.0 미만으로 고정합니다.
+# 이거 풀면 로봇 멈춥니다!
+numpy<2.0
+
+# 👇 로봇팀 추가 패키지 (v1.6 Updated)
+SpeechRecognition
+PyAudio
+faster-whisper
+gTTS

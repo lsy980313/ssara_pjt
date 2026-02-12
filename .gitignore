@@ -1,0 +1,83 @@
+############################
+# IDE / Editor (공통)
+############################
+.idea/
+.vscode/
+*.code-workspace
+.history/
+.claude/
+
+############################
+# OS / System junk
+############################
+.DS_Store
+Thumbs.db
+nul
+
+############################
+# Environment / Secrets
+############################
+.env
+.env.local
+.env.*.local
+!.env.example
+backend/src/main/resources/application-dev.yml
+
+############################
+# Backend runtime / logs / DB
+############################
+backend/db_data/
+backend/server.log
+backend/nul
+backend/build/
+backend/.gradle/
+*.db
+*.db-shm
+*.db-wal
+
+############################
+# Frontend
+############################
+frontend/node_modules/
+frontend/dist/
+frontend/dev-dist/
+
+############################
+# Mosquitto
+############################
+mosquitto/data/
+mosquitto/log/
+
+############################
+# Media / 기타 (전역 공통)
+############################
+*.mp3
+*.wav
+
+############################
+# Logs
+############################
+*.log
+npm-debug.log*
+yarn-debug.log*
+logs/
+
+############################
+# Personal notes & Agent
+############################
+taeyeon_solve.md
+to_do_list.md
+.agent/
+.obsidian/
+
+# 대용량 맵 데이터 (가장 큰 원인)
+*.ply
+*.pcd
+
+# Tensorboard 학습 로그 (50MB 이상 경고 원인)
+events.out.tfevents.*
+
+# 불필요한 캐시 및 빌드 결과물
+__pycache__/
+build/
+devel/

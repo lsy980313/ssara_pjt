@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="foot" params="prefix parent *joint_origin">
+	  <joint name="${prefix}_foot_fixed" type="fixed">
+	    <xacro:insert_block name="joint_origin"/>
+	    <parent link="${parent}"/>
+	    <child link="${prefix}_foot"/>
+	  </joint>
+
+	<link name="${prefix}_foot">
+	  <visual>
+		  <geometry>
+		    <mesh filename="package://robot_description/meshes/DAE/foot/foot.dae"/>
+		  </geometry>
+	  </visual>
+	  <collision>
+		  <geometry>
+		    <mesh filename="package://robot_description/meshes/STL/foot/foot.stl"/>
+		  </geometry>
+	  </collision>
+	  <inertial>
+		  <origin xyz="0.0 0.0 0.0"/>
+		  <mass value="0.015"/> 
+		  <inertia ixx="0.000001349" ixy="0.0" ixz="0.0" iyy="0.000001349" iyz="0.0" izz="0.000001349" />
+	  </inertial>
+	</link>
+  </xacro:macro>
+  
+</robot>
