@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>GAE - 개인 포트폴리오</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm 20mm 18mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; font-size: 10.5pt; line-height: 1.7; color: #1a1a1a; max-width: 100%; padding: 0; margin: 0; word-break: keep-all; overflow-wrap: break-word; }
+  h1 { font-size: 22pt; color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 8px; margin-top: 0; margin-bottom: 16px; page-break-after: avoid; }
+  h2 { font-size: 15pt; color: #283593; border-bottom: 2px solid #c5cae9; padding-bottom: 5px; margin-top: 28px; margin-bottom: 12px; page-break-after: avoid; }
+  h3 { font-size: 12.5pt; color: #3949ab; margin-top: 20px; margin-bottom: 8px; page-break-after: avoid; }
+  h4 { font-size: 11pt; color: #5c6bc0; margin-top: 14px; margin-bottom: 6px; page-break-after: avoid; }
+  p { margin: 6px 0; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th { background-color: #e8eaf6; color: #1a237e; font-weight: 600; text-align: left; padding: 8px 10px; border: 1px solid #c5cae9; }
+  td { padding: 6px 10px; border: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) { background-color: #fafafa; }
+  code { background-color: #f5f5f5; padding: 1px 5px; border-radius: 3px; font-family: 'Consolas', 'D2Coding', monospace; font-size: 9pt; color: #c62828; }
+  pre { background-color: #263238; color: #e0e0e0; padding: 14px 16px; border-radius: 6px; overflow-x: auto; font-family: 'Consolas', 'D2Coding', monospace; font-size: 8.5pt; line-height: 1.5; margin: 10px 0; page-break-inside: avoid; white-space: pre-wrap; word-wrap: break-word; }
+  pre code { background: none; color: #e0e0e0; padding: 0; font-size: 8.5pt; }
+  blockquote { border-left: 4px solid #7986cb; background-color: #e8eaf6; padding: 10px 16px; margin: 12px 0; color: #37474f; font-size: 10pt; page-break-inside: avoid; }
+  blockquote p { margin: 4px 0; }
+  ul, ol { padding-left: 22px; margin: 6px 0; }
+  li { margin: 3px 0; }
+  hr { border: none; border-top: 1px solid #e0e0e0; margin: 20px 0; }
+  strong { color: #1a237e; }
+  a { color: #1565c0; text-decoration: none; }
+</style>
+</head>
+<body>
+<h1 id="gae-aiot-perception-system-engineer">GAE - AIoT 로봇 반려견 돌봄 플랫폼 | Perception &amp; System Engineer</h1>
+<h2 id="1-project-overview-my-role">1. Project Overview &amp; My Role</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>프로젝트</strong></td>
+<td>GAE (개) — AIoT 기반 로봇 반려견 돌봄 플랫폼 (SSAFY 14기, 팀 프로젝트)</td>
+</tr>
+<tr>
+<td><strong>Role</strong></td>
+<td>Perception &amp; System Engineer (로봇 인지 및 시스템 최적화 총괄)</td>
+</tr>
+<tr>
+<td><strong>Key Tech</strong></td>
+<td>ROS2, YOLOv8 (TensorRT FP16), Visual SLAM (RTAB-Map), MQTT, Docker</td>
+</tr>
+<tr>
+<td><strong>Contribution</strong></td>
+<td>Jetson Orin Nano 8GB 내 SLAM + YOLO 동시 구동 최적화, MQTT 통신 아키텍처 설계, 3-Port → Dual Listener 표준화</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>이 거대한 AIoT 시스템에서 </em><em>Robot의 눈과 뇌(Perception &amp; Optimization)</em><em>를 담당하여, 제한된 리소스 안에서 SLAM과 YOLO를 동시에 돌리는 미션을 해결했습니다.</em></p>
+</blockquote>
+<p><strong>담당 영역:</strong>
+- <strong>gae_perception 패키지 전체 개발</strong> (로봇 인지 시스템)
+- Visual SLAM (RTAB-Map) 구축 및 맵 제작
+- YOLOv8 객체 인식 모델 TensorRT 최적화 및 경량화
+- Jetson Orin Nano에 RGB-D 카메라 연동 및 웹 영상 스트리밍
+- MQTT 기반 VSLAM 좌표 ↔ 웹 실시간 통신 설계 및 구현</p>
+<hr />
+<h2 id="2-tech-stack">2. Tech Stack</h2>
+<h3 id="my-main-stack-robot-embedded-aiot">My Main Stack (Robot / Embedded / AIoT)</h3>
+<table>
+<thead>
+<tr>
+<th>기술</th>
+<th>버전</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Jetson Orin Nano</strong></td>
+<td>8GB</td>
+<td>엣지 컴퓨팅 보드</td>
+</tr>
+<tr>
+<td>Ubuntu</td>
+<td>22.04 LTS</td>
+<td>로봇 운영체제</td>
+</tr>
+<tr>
+<td><strong>ROS2 Humble</strong></td>
+<td>LTS</td>
+<td>로봇 미들웨어</td>
+</tr>
+<tr>
+<td><strong>Python</strong></td>
+<td>3.10</td>
+<td>로봇 소프트웨어 개발</td>
+</tr>
+<tr>
+<td><strong>PyTorch</strong></td>
+<td>2.2.0 (CUDA)</td>
+<td>딥러닝 추론</td>
+</tr>
+<tr>
+<td><strong>YOLOv8 (TensorRT FP16 Optimized)</strong></td>
+<td>8.4.9</td>
+<td>객체 인식 (Jetson 최적화)</td>
+</tr>
+<tr>
+<td><strong>RTAB-Map</strong></td>
+<td>-</td>
+<td>Visual SLAM (자율 주행 지도)</td>
+</tr>
+<tr>
+<td><strong>OpenCV</strong></td>
+<td>4.9.0 (CUDA)</td>
+<td>영상 처리</td>
+</tr>
+<tr>
+<td><strong>paho-mqtt</strong></td>
+<td>2.1.0</td>
+<td>MQTT 로봇-서버 통신</td>
+</tr>
+</tbody>
+</table>
+<h3 id="infra">Infra (내가 직접 구성)</h3>
+<table>
+<thead>
+<tr>
+<th>기술</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Eclipse Mosquitto</td>
+<td>MQTT 브로커 설계 (TCP 1883 / WebSocket 9001 Dual Listener)</td>
+</tr>
+<tr>
+<td>Docker &amp; Docker Compose</td>
+<td>Jetson 컨테이너 배포 (<code>--network host</code>, <code>--runtime nvidia</code>)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>팀 구성: Backend (Spring Boot, PostgreSQL), Frontend (Vue.js 3, PWA) — 본 문서는 Robot/Perception 파트에 집중합니다.</em></p>
+</blockquote>
+<hr />
+<h2 id="3-perception-system-architecture">3. Perception System Architecture</h2>
+<p><strong>하드웨어 환경</strong>: Jetson Orin Nano (8GB RAM, 1024코어 GPU) + Orbbec Astra Pro RGB-D (320x240@30FPS)</p>
+<pre class="code"><code>+================================================+
+||          Jetson Orin Nano (Robot)             ||
+||              [나의 전담 영역]                   ||
+||                                              ||
+||  ┌──────────────┐  ┌────────────┐            ||
+||  │ Orbbec Astra │  │  RTAB-Map  │            ||
+||  │ Pro (RGB-D)  │──│  V-SLAM    │            ||
+||  │ 320x240@30   │  │            │            ||
+||  └──────┬───────┘  └─────┬──────┘            ||
+||         │                │                   ||
+||   ┌─────▼─────┐    ┌─────▼──────┐            ||
+||   │ YOLOv8    │    │ pose_bridge│            ||
+||   │ TensorRT  │    │ .py        │            ||
+||   │ FP16      │    │ (ROS2→MQTT)│            ||
+||   └─────┬─────┘    └─────┬──────┘            ||
+||         │                │                   ||
+||   ┌─────▼─────┐          │                   ||
+||   │ Decision  │          │                   ||
+||   │ Node      │          │                   ||
+||   │(자율주행)  │          │                   ||
+||   └─────┬─────┘          │                   ||
+||         │   /cmd_vel     │  MQTT &quot;robot/pose&quot; ||
++====+=====+================+===================+
+     │                      │
+     ▼                      ▼
+  모터 제어           ┌───────────────┐
+                     │  Mosquitto    │ ← [나의 설계]
+                     │  MQTT Broker  │
+                     │  :1883 (TCP)  │
+                     │  :9001 (WS)   │
+                     └───────────────┘
+                             │
+                             ▼
+                       외부 서버 / 웹
+</code></pre>
+
+<p><strong>데이터 흐름 (내 담당 영역):</strong></p>
+<pre class="code"><code>┌─────────────────────────────────────────────────────────┐
+│                Orbbec Astra Pro (RGB-D)                 │
+│           Color 320x240 | Depth 320x240 | IR 640x480    │
+└──────────┬──────────────┬───────────────┬───────────────┘
+           │              │               │
+     ┌─────▼─────┐  ┌────▼────┐   ┌──────▼──────┐
+     │ RTAB-Map  │  │  YOLO   │   │ Depth→Web   │
+     │  V-SLAM   │  │TensorRT │   │ Normalizer  │
+     │           │  │  FP16   │   │             │
+     └─────┬─────┘  └────┬────┘   └──────┬──────┘
+           │              │               │
+     ┌─────▼─────┐  ┌────▼────┐   ┌──────▼──────┐
+     │ Pose      │  │Decision │   │ Web Video   │
+     │ Bridge    │  │ Node    │   │  Server     │
+     │(MQTT 전송) │  │(자율주행)│   │(MJPEG HTTP) │
+     └─────┬─────┘  └────┬────┘   └──────┬──────┘
+           │              │               │
+     ┌─────▼─────┐  ┌────▼────┐   ┌──────▼──────┐
+     │MQTT Broker│  │/cmd_vel │   │  웹 브라우저  │
+     │robot/pose │  │모터 제어 │   │  실시간 영상  │
+     └───────────┘  └─────────┘   └─────────────┘
+</code></pre>
+
+<hr />
+<h2 id="4-critical-engineering-problems-solutions">4. Critical Engineering Problems &amp; Solutions</h2>
+<blockquote>
+<p>실제 개발 과정에서 겪은 <strong>디버깅 여정</strong>입니다. 어떻게 발견하고, 어떤 가설을 세우고, 어떻게 해결했는지를 중심으로 작성했습니다.</p>
+</blockquote>
+<h3 id="problem-1-exit-code-6-race-condition">Problem 1. "exit code -6" — 카메라 Race Condition</h3>
+<p><strong>발견</strong>: SLAM과 YOLO를 동시에 <code>ros2 launch</code>로 실행하면, 간헐적으로 카메라 노드가 <code>exit code -6</code>으로 크래시했다. 5번 중 2~3번 발생하는 비결정적 오류라 재현이 까다로웠다.</p>
+<p><strong>조사</strong>: YOLO 단독 정상, SLAM 단독 정상. <strong>동시 실행 시에만</strong> 발생. <code>lsof /dev/video0</code>으로 확인해보니, 두 프로세스가 거의 같은 시점에 카메라 디바이스를 열려고 시도하는 Race Condition이었다.</p>
+<p><strong>해결</strong>: <strong>카메라 드라이버를 단일 프로세스로 분리</strong>하고, SLAM과 YOLO는 <strong>ROS2 토픽을 구독하는 구조</strong>로 재설계. <code>camera_start.sh</code>로 실행 순서를 제어했다:</p>
+<pre class="code"><code class="language-bash"># camera_start.sh — 핵심은 sleep 5
+ros2 launch astra_camera astra_pro.launch.xml &amp;
+sleep 5  # USB 카메라 하드웨어 초기화 대기
+ros2 launch gae_perception slam.launch.py
+</code></pre>
+
+<p><strong>추가 해결</strong>: Ctrl+C 강제 종료 시 USB 좀비 프로세스 문제 → <code>/etc/udev/rules.d/99-astra.rules</code>에 영구 권한 규칙 작성으로 근본 해결.</p>
+<hr />
+<h3 id="problem-2-slam-yolo-oom-8gb">Problem 2. SLAM + YOLO OOM 셧다운 — 8GB의 한계와 싸우기</h3>
+<p><strong>발견</strong>: SLAM과 YOLO를 <strong>동시에 실행하면</strong> Jetson이 5~10분 내에 OOM(Out of Memory)으로 셧다운. <code>dmesg</code>에 <code>oom-killer</code> 로그 확인.</p>
+<p><strong>원인</strong>: Jetson Orin Nano는 8GB RAM을 CPU/GPU가 <strong>공유(Unified Memory)</strong>. 세 병목이 겹침:
+1. SLAM 키프레임 무한 축적 (메모리 누수)
+2. YOLO 매 프레임 추론 (GPU 독점)
+3. 1080p 고해상도 처리 (특징점 추출 비용 과다)</p>
+<p><strong>해결 — 4단계 순차 최적화</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>조치</th>
+<th>핵심 판단</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SLAM <code>Mem/Strategy=1</code> (Keep Last)</td>
+<td>오래된 키프레임 자동 삭제</td>
+</tr>
+<tr>
+<td>2</td>
+<td>YOLO 5프레임당 1회 추론</td>
+<td>0.17초 × 0.3m/s = 5cm, 장애물 감지 거리(0.5m) 대비 안전</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>TensorRT + FP16 변환</strong></td>
+<td>GPU 메모리 <strong>절반</strong> — SLAM과 공존시키는 결정적 한 수</td>
+</tr>
+<tr>
+<td>4</td>
+<td>1080p → 320x240 (96% 감소)</td>
+<td><code>DetectionRate=1</code> + <code>Grid/FromDepth=True</code>로 맵 품질 유지</td>
+</tr>
+</tbody>
+</table>
+<p><strong>결과</strong>: SLAM + YOLO + 웹 스트리밍 동시 실행에서 RAM 안정. SLAM 1Hz 제한은 CPU 100%로 인한 <strong>모터 제어 지연 방지</strong>를 위한 우선순위 판단이었다.</p>
+<hr />
+<h3 id="problem-3-http-polling-mqtt">Problem 3. HTTP Polling → MQTT — 아키텍처를 갈아엎은 이유</h3>
+<p><strong>발견</strong>: 초기 Python Flask REST API + 1초 폴링 방식의 두 가지 문제:
+1. 로봇 정지 중에도 매초 요청 → <strong>불필요한 트래픽</strong>
+2. 폴링 주기 1초 = 위치 정보 <strong>최대 지연 1초</strong></p>
+<p><strong>Flask Bridge의 도전</strong>: ROS2 <code>rclpy.spin()</code> 이벤트 루프와 Flask HTTP 서버 루프를 <strong>하나의 프로세스에서 공존</strong>시켜야 했다. <code>threading.Thread</code>로 분리하고, TF2로 <code>map</code> → <code>base_link</code> 좌표 변환까지 구현. 동작은 했지만, HTTP 요청-응답 모델은 IoT 실시간 전송에 근본적으로 부적합했다.</p>
+<p><strong>MQTT 전환 효과</strong>:
+- 이벤트 기반 → 변화 시에만 발행 (네트워크 효율)
+- 발행 즉시 전달 → <strong>지연 0.1초 이하</strong>
+- Pub/Sub → 클라이언트 수에 무관한 확장성</p>
+<p><strong>배운 것</strong>: 단순히 라이브러리를 바꾸는 것이 아니라, 메시지 직렬화(JSON), 전송 빈도 제어(스로틀링), 연결 끊김 대응, QoS 레벨 선택 등 <strong>통신 프로토콜 수준의 설계</strong>가 필요했다.</p>
+<hr />
+<h3 id="3">회고 (3줄 요약)</h3>
+<ul>
+<li><strong>엣지 최적화</strong>: "최고 성능"이 아닌 "제한된 8GB 안에서 최선의 조합"을 찾는 트레이드오프 결정 과정이 가장 큰 성장이었다.</li>
+<li><strong>아쉬운 점</strong>: INT8 양자화 미적용, SLAM 맵 자동 저장/복원 미구현, MQTT 자동 재연결 + 백오프 전략 미적용.</li>
+<li><strong>다음 프로젝트</strong>: 통신 인터페이스(포트, 프로토콜, 토픽 형식)는 개발 초기에 합의하겠다.</li>
+</ul>
+<hr />
+<h2 id="5-detailed-implementation">5. Detailed Implementation</h2>
+<h3 id="5-1-visual-slam-rtab-map">5-1. Visual SLAM (RTAB-Map) 구축 및 맵 제작</h3>
+<p>RTAB-Map 기반 Visual SLAM 시스템을 Jetson Orin Nano 환경에서 구축하고, 실내 자율 주행을 위한 2D/3D 맵을 생성했습니다.</p>
+<p><strong>주요 구현 내용:</strong></p>
+<ul>
+<li>RTAB-Map 파라미터 튜닝을 통한 Jetson 환경 최적화
+  <code>DetectionRate=1      # 매 프레임 키프레임 검출
+  Mem/Strategy=1       # Keep Last 전략 (메모리 절약)
+  Grid/FromDepth=True  # 깊이 센서 기반 그리드맵 생성
+  Reg/Force3DoF=True   # 3자유도 제한 (실내 평면 이동)</code></li>
+<li>Orbbec Astra Pro RGB-D 카메라의 Color/Depth 이미지 동기화 (Approximate Sync, 0.05초 허용)</li>
+<li>카메라 → base_link 간 Static TF 퍼블리시 설정 (<code>[0.1, 0, 0.1]m</code> 오프셋)</li>
+<li>2D 점유 격자 맵 (<code>map_2d.pgm</code>, 5cm/pixel 해상도) 및 3D 포인트 클라우드 맵 (<code>map_3d_cloud.ply</code>) 생성</li>
+<li>SLAM 위치 추정 결과를 MQTT로 브릿지하여 웹 프론트엔드에 실시간 로봇 위치 전송</li>
+</ul>
+<p><strong>흰 벽 환경 대응</strong>: 특징점이 부족한 흰 벽 복도에서 <code>Odometry Lost</code>가 빈발하여 <code>Vis/MinInliers</code>를 20→10으로 하향 조정. G2O 그래프 최적화가 이상치를 걸러주기 때문에 맵 품질 저하 없이 안정적 추적을 확보했다.</p>
+<p><strong>생성된 맵 파일:</strong>
+| 파일 | 형식 | 용도 |
+|------|------|------|
+| <code>map_2d.pgm</code> | 2D 점유 격자 이미지 | 내비게이션 경로 계획 |
+| <code>map_2d.yaml</code> | YAML 메타데이터 | 맵 해상도/원점 설정 |
+| <code>map_3d_cloud.ply</code> | 3D 포인트 클라우드 | 공간 시각화 |
+| <code>rtabmap.db</code> | RTAB-Map DB | SLAM 세션 저장/복원 |</p>
+<hr />
+<h3 id="5-2-mqtt-vslam">5-2. MQTT 기반 VSLAM 좌표 ↔ 웹 실시간 통신</h3>
+<p>로봇(Jetson)과 웹 서버 간 VSLAM 좌표를 실시간으로 주고받기 위해 MQTT Pub/Sub 방식을 직접 설계하고 구현했습니다.</p>
+<p><strong>왜 MQTT를 선택했는가:</strong>
+- HTTP 폴링 대비 <strong>저지연, 저오버헤드</strong> (초당 10회 위치 전송에 적합)
+- Pub/Sub 구조로 웹 클라이언트가 여러 대 접속해도 <strong>확장성</strong> 확보
+- QoS 레벨 지원으로 <strong>메시지 전달 보장</strong> 가능</p>
+<p><strong>구현 구조:</strong></p>
+<pre class="code"><code>┌─────────────────────────────────────────────────────┐
+│                  Jetson (로봇)                       │
+│                                                     │
+│  RTAB-Map SLAM                                      │
+│  /rtabmap/localization_pose                         │
+│         │ (PoseWithCovarianceStamped)               │
+│         ▼                                           │
+│  ┌──────────────────────────┐                       │
+│  │   pose_bridge.py         │                       │
+│  │   (ROS2 Node)            │                       │
+│  │                          │                       │
+│  │  ① ROS2 토픽 구독          │                       │
+│  │  ② 좌표 추출 (x, y)        │                       │
+│  │  ③ 스로틀링 (0.1초)        │                       │
+│  │  ④ JSON 직렬화            │                       │
+│  │  ⑤ MQTT Publish          │                       │
+│  └────────────┬─────────────┘                       │
+└───────────────┼─────────────────────────────────────┘
+                │  MQTT &quot;robot/pose&quot;
+                │  {&quot;x&quot;: 1.23, &quot;y&quot;: 4.56, &quot;state&quot;: &quot;active&quot;}
+                ▼
+        ┌───────────────┐
+        │  Mosquitto    │
+        │  MQTT Broker  │
+        │  TCP :1883    │
+        │  WS  :9001    │
+        └───────┬───────┘
+                │  Subscribe
+                ▼
+        ┌───────────────┐
+        │ Spring Boot   │ → WebSocket(STOMP) → Vue.js Frontend
+        └───────────────┘
+</code></pre>
+
+<p><strong>Pose Bridge 핵심 구현 (<code>pose_bridge.py</code>):</strong></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>구현 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ROS2 구독 토픽</td>
+<td><code>/slam_pose</code> → <code>/rtabmap/localization_pose</code> (remapping)</td>
+</tr>
+<tr>
+<td>메시지 타입</td>
+<td><code>PoseWithCovarianceStamped</code> (공분산 포함 위치 추정)</td>
+</tr>
+<tr>
+<td>MQTT 클라이언트</td>
+<td>paho-mqtt v2 (<code>CallbackAPIVersion.VERSION2</code>)</td>
+</tr>
+<tr>
+<td>브로커 주소</td>
+<td>런치 파일 파라미터로 주입 (초기 <code>1884</code> → 표준화 후 <code>1883</code>)</td>
+</tr>
+<tr>
+<td>발행 토픽</td>
+<td><code>robot/pose</code></td>
+</tr>
+<tr>
+<td>페이로드</td>
+<td><code>{"x": float, "y": float, "state": "active"}</code> (JSON)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>전송 최적화 기법:</strong></p>
+<pre class="code"><code class="language-python"># 1. 시간 기반 스로틀링 - 0.1초 쿨타임 (최대 10Hz)
+if current_time - self.last_sent_time &lt; 0.1:
+    return
+
+# 2. 거리 기반 필터링 - 1cm 이상 이동 시에만 전송 (v1)
+dist = math.sqrt((x - self.last_x)**2 + (y - self.last_y)**2)
+if dist &lt; 0.01:
+    return
+</code></pre>
+
+<ul>
+<li><strong>v1 (초기)</strong>: 시간 스로틀링(0.1초) + 거리 임계값(1cm) 이중 필터</li>
+<li><strong>v2 (개선)</strong>: 거리 필터 제거, 시간 스로틀링만 유지 → 미세한 움직임도 웹에 반영</li>
+</ul>
+<p><strong>Deadband Filter 설계</strong>: 로봇 정지 시에도 SLAM 노이즈(~1mm)로 웹 마커가 떨리는 현상을 발견. 제어공학의 불감대 개념을 적용하여 2cm 미만 변화를 무시하는 필터를 설계했다. 이후 요구사항 변경에 따라 Deadband를 제거하고 스로틀링만 유지하는 방식으로 유연하게 전환.</p>
+<p><strong>통신 아키텍처 진화:</strong></p>
+<pre class="code"><code>[Before] HTTP Polling (Flask, 1초 주기) → 지연 1초, 불필요한 트래픽
+    ↓ MQTT Pub/Sub 전환
+[과도기] 3-Port 파편화 (:1883, :1884, :9001) → 팀원마다 다른 포트
+    ↓ 본인 코드 리팩토링 + 포트 표준화
+[After] Dual Listener (:1883 TCP + :9001 WS) → 파라미터 주입 구조
+</code></pre>
+
+<hr />
+<h3 id="5-3-yolov8-tensorrt">5-3. YOLOv8 객체 인식 — TensorRT 최적화</h3>
+<p>YOLOv8 모델을 Jetson Orin Nano GPU에 최적화하여 실시간 객체 인식을 구현했습니다.</p>
+<p><strong>최적화 기법:</strong></p>
+<table>
+<thead>
+<tr>
+<th>기법</th>
+<th>적용 내용</th>
+<th>효과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TensorRT 엔진 변환</strong></td>
+<td><code>.pt</code> → <code>.engine</code> 변환 (레이어/커널 퓨전, 메모리 최적화)</td>
+<td>추론 속도 대폭 향상</td>
+</tr>
+<tr>
+<td><strong>FP16 반정밀도 연산</strong></td>
+<td><code>half=True</code> 설정으로 16비트 부동소수점 사용</td>
+<td>메모리 2배 절감, 속도 2배 향상</td>
+</tr>
+<tr>
+<td><strong>프레임 스킵</strong></td>
+<td>5프레임당 1회 추론 (30FPS → 6FPS 추론)</td>
+<td>GPU 부하 80% 감소</td>
+</tr>
+<tr>
+<td><strong>입력 해상도 고정</strong></td>
+<td>640x640 고정 입력 (TensorRT 엔진 최적)</td>
+<td>일관된 추론 성능 보장</td>
+</tr>
+</tbody>
+</table>
+<p><strong>추론 파이프라인:</strong></p>
+<pre class="code"><code>카메라 RGB (320x240, 30FPS)
+  → 프레임 스킵 필터 (5프레임당 1회)
+  → YOLOv8 TensorRT 추론 (640x640, FP16)
+  → 객체 검출 결과 + 깊이 센서 거리 계산
+  → ROS2 토픽 발행 (/yolo_result, /yolo_image)
+</code></pre>
+
+<p><strong>깊이 기반 거리 측정</strong>: 검출된 객체 중심의 10x10 픽셀 ROI에서 깊이값 중앙값 추출. 60cm 미만은 센서 한계로 0.5m 보정. 장애물 0.5m 이내 감지 시 자동 정지.</p>
+<p><strong>전체 파이프라인 최적화 요약:</strong></p>
+<table>
+<thead>
+<tr>
+<th>영역</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>카메라 해상도</td>
+<td>1080p (2,073,600 px)</td>
+<td>320x240 (76,800 px, 96% 감소)</td>
+</tr>
+<tr>
+<td>YOLO 모델</td>
+<td>PyTorch <code>.pt</code></td>
+<td>TensorRT <code>.engine</code> (FP16)</td>
+</tr>
+<tr>
+<td>추론 빈도</td>
+<td>매 프레임 (30 FPS)</td>
+<td>5프레임당 1회 (6 FPS, 부하 80%↓)</td>
+</tr>
+<tr>
+<td>SLAM 메모리</td>
+<td>키프레임 무한 축적</td>
+<td>Keep Last (메모리 상한 제어)</td>
+</tr>
+<tr>
+<td>위치 전송</td>
+<td>HTTP Polling 1초</td>
+<td>MQTT 스로틀링 10Hz</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</body>
+</html>
